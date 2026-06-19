@@ -8,9 +8,11 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
 import static jakarta.persistence.GenerationType.UUID;
 
 @Getter
@@ -19,9 +21,10 @@ import static jakarta.persistence.GenerationType.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class AbstractEntity {
     @Id
-    @GeneratedValue(strategy = UUID)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
