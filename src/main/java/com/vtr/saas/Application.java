@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SaasMultiTenantAppApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SaasMultiTenantAppApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
