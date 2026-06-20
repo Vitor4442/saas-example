@@ -26,7 +26,7 @@ public class AbstractEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+    private String id;
 
     @Column(name = "tenant_id", nullable = false)
     private String tenantId;

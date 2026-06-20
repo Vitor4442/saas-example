@@ -1,5 +1,7 @@
 package com.vtr.saas.services.impl;
 
+import com.vtr.saas.mappers.CategoryMapper;
+import com.vtr.saas.repositories.CategoryRepository;
 import com.vtr.saas.requests.CategoryRequest;
 import com.vtr.saas.responses.CategoryResponse;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryServiceImpl implements CategoryService {
+
+    private final CategoryRepository categoryRepository;
+    private final CategoryMapper categoryMapper;
 
     @Override
     public void create(CategoryRequest request) {
