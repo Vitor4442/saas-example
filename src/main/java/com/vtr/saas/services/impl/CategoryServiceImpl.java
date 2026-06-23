@@ -5,6 +5,7 @@ import com.vtr.saas.mappers.CategoryMapper;
 import com.vtr.saas.repositories.CategoryRepository;
 import com.vtr.saas.requests.CategoryRequest;
 import com.vtr.saas.responses.CategoryResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,12 +50,16 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse findById(String id) {
-        return null;
+        return this.categoryRepository.findById(id)
+                .map(this.categoryMapper::toRquest)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 
     @Override
     public void delete(String id) {
-
+        final Category category = this.categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+        this.categoryRepository.delete(category);
     }
 
     private void checkTfCategoryExistsByName(String name) {
