@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,9 +50,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<CategoryResponse> findAll() {
+        return this.categoryRepository.findAll()
+                .stream()
+                .map(this.categoryMapper::toResponse)
+                .toList();
+    }
+
+    @Override
     public CategoryResponse findById(String id) {
         return this.categoryRepository.findById(id)
-                .map(this.categoryMapper::toRquest)
+                .map(this.categoryMapper::toResponse)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 

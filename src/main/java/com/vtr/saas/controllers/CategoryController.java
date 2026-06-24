@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/categories")
 @RequiredArgsConstructor
@@ -38,5 +40,10 @@ public class CategoryController {
     public  ResponseEntity<Void> deleteCategory( @PathVariable("category-id") final String id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<CategoryResponse>> getAllCategory(){
+        return ResponseEntity.ok(this.service.findAll());
     }
 }
