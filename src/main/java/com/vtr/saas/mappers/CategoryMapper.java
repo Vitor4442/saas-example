@@ -16,7 +16,7 @@ public class CategoryMapper {
                 .build();
     }
 
-    public CategoryResponse toRquest(final Category entity){
+    public CategoryResponse toResponse(final Category entity){
         return CategoryResponse.builder()
                 .id(entity.getId())
                 .name(entity.getName())
