@@ -24,7 +24,7 @@ import static jakarta.persistence.GenerationType.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public class AbstractEntity {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = UUID)
     @Column(name = "id", nullable = false, updatable = false)
     private String id;
 
@@ -36,7 +36,7 @@ public class AbstractEntity {
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at", nullable = false, insertable = false)
+    @Column(name = "updated_at", insertable = false)
     private LocalDateTime updatedAt;
 
     @Column(name = "deleted", nullable = false)
@@ -46,6 +46,10 @@ public class AbstractEntity {
     protected void onCreate(){
         if (this.deleted == null){
             this.deleted = false;
+        }
+
+        if (this.tenantId == null){
+            this.tenantId = "Default";
         }
     }
 
