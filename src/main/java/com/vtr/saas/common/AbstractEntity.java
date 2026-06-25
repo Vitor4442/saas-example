@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
-
-import static jakarta.persistence.GenerationType.IDENTITY;
 import static jakarta.persistence.GenerationType.UUID;
 
 @Getter
@@ -22,6 +22,8 @@ import static jakarta.persistence.GenerationType.UUID;
 @NoArgsConstructor
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@FilterDef(name = "tenantFilter", parameters = @ParamDef(name = "tenantId", type = String.class), defaultCondition = "tenant_id = :tenantId")
+@Filter(name = "tenantFilter")
 public class AbstractEntity {
     @Id
     @GeneratedValue(strategy = UUID)
@@ -48,7 +50,16 @@ public class AbstractEntity {
             this.deleted = false;
         }
 
+        //improvisado para teste
         if (this.tenantId == null){
+            this.tenantId = "Default";
+        }
+    }
+
+    //improvisado para teste
+    @PreUpdate
+    protected void onUpdate() {
+        if (this.tenantId == null) {
             this.tenantId = "Default";
         }
     }
