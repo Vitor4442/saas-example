@@ -1,4 +1,4 @@
-package com.vtr.saas.common;
+package com.vtr.saas.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
