@@ -1,41 +1,35 @@
 package com.vtr.saas.mappers;
 
-import com.vtr.saas.entities.Category;
 import com.vtr.saas.entities.Product;
-import com.vtr.saas.requests.ProductRequest;
-import com.vtr.saas.responses.ProductResponse;
+import com.vtr.saas.entities.StockMvt;
+import com.vtr.saas.requests.StockMvtRequest;
+import com.vtr.saas.responses.StockMvtResponse;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StockMvtMapper {
 
-    public Product toEntity(final ProductRequest request) {
-        return Product.builder()
-                .name(request.getName())
-                .reference(request.getReference())
-                .description(request.getDescription())
-                .price(request.getPrice())
-                .alertThreshold(request.getAlertThreshold())
-                .category(Category.builder()
-                        .id(request.getCategoryId())
+
+    public StockMvt toEntity(final StockMvtRequest request) {
+        return StockMvt.builder()
+                .dateMvt(request.getDateMvt())
+                .comment(request.getComment())
+                .typeMvt(request.getTypeMvt())
+                .quantity(request.getQuantity())
+                .product(Product.builder()
+                        .id(request.getProductId())
                         .build())
                 .deleted(false)
                 .build();
     }
 
-    public ProductResponse toResponse(final Product product) {
-        return ProductResponse.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .reference(product.getReference())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .alertThreshold(product.getAlertThreshold())
-                .categoryId(product.getCategory()
-                        .getId())
-                .categoryName(product.getCategory()
-                        .getName())
-                // .availableQuantity() to be later implemented
+    public StockMvtResponse toResponse(final StockMvt entity) {
+        return StockMvtResponse.builder()
+                .id(entity.getId())
+                .dateMvt(entity.getDateMvt())
+                .comment(entity.getComment())
+                .typeMvt(entity.getTypeMvt())
+                .quantity(entity.getQuantity())
                 .build();
     }
 }
