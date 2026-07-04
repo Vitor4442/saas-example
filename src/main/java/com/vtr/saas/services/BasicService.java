@@ -1,5 +1,7 @@
 package com.vtr.saas.services;
 
+import com.vtr.saas.common.PageResponse;
+
 import java.util.List;
 
 public interface BasicService<I, O> {
@@ -8,7 +10,7 @@ public interface BasicService<I, O> {
 
     void update (final String id, final I request);
 
-    List<O> findAll();
+    PageResponse<O> findAll(final int page, final int size);
 
     O findById(final String id);
 
