@@ -37,4 +37,10 @@ public class StockMvt extends AbstractEntity{
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @PrePersist
+    public void addDateTimeNow(){
+        dateMvt = LocalDate.now();
+    }
+
+
 }
