@@ -1,7 +1,7 @@
 package com.vtr.saas.services;
 
-import com.vtr.saas.requests.CategoryRequest;
-import com.vtr.saas.responses.CategoryResponse;
+import com.vtr.saas.requests.ProductRequest;
+import com.vtr.saas.responses.ProductResponse;
 
-public interface ProductService extends BasicService<CategoryRequest, CategoryResponse> {
+public interface ProductService extends BasicService<ProductRequest, ProductResponse> {
 }
