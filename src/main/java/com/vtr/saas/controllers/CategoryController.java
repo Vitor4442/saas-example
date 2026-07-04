@@ -2,7 +2,7 @@ package com.vtr.saas.controllers;
 
 import com.vtr.saas.requests.CategoryRequest;
 import com.vtr.saas.responses.CategoryResponse;
-import com.vtr.saas.services.impl.CategoryService;
+import com.vtr.saas.services.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

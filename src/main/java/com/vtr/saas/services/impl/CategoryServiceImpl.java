@@ -1,17 +1,20 @@
 package com.vtr.saas.services.impl;
 
+import com.vtr.saas.common.PageResponse;
 import com.vtr.saas.entities.Category;
 import com.vtr.saas.mappers.CategoryMapper;
 import com.vtr.saas.repositories.CategoryRepository;
 import com.vtr.saas.requests.CategoryRequest;
 import com.vtr.saas.responses.CategoryResponse;
+import com.vtr.saas.services.CategoryService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,11 +55,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> findAll() {
-        return this.categoryRepository.findAll()
-                .stream()
-                .map(this.categoryMapper::toResponse)
-                .toList();
+    public PageResponse<CategoryResponse> findAll(final int page, final int size) {
+        final PageRequest pageRequest = PageRequest.of(page, size);
+        final Page<Category> categories = this.categoryRepository.findAll(pageRequest);
+        final Page<CategoryResponse> categoryResponse = categories.map(this.categoryMapper::toResponse);
+        return PageResponse.of(categoryResponse);
     }
 
     @Override
