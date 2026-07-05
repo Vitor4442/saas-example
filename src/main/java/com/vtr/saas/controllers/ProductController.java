@@ -3,7 +3,7 @@ package com.vtr.saas.controllers;
 import com.vtr.saas.common.PageResponse;
 import com.vtr.saas.requests.ProductRequest;
 import com.vtr.saas.responses.ProductResponse;
-import com.vtr.saas.services.ProductService;
+import com.vtr.saas.services.impl.ProductServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "products", description = "Product API")
 public class ProductController {
 
-    private final ProductService service;
+    private final ProductServiceImpl service;
 
     @PostMapping
     public ResponseEntity<Void> createProduct (@RequestBody @Valid final ProductRequest request){

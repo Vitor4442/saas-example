@@ -89,7 +89,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private void checkIfProductAlreadyExistsByReference(final String refence){
-        final Optional<Product> product = productRepository.findByReferenceIgoneCase(refence);
+        final Optional<Product> product = productRepository.findByReferenceIgnoreCase(refence);
             if (product.isPresent()){
                 log.debug("Product Already existing");
                 throw new RuntimeException("Product Already exists");
