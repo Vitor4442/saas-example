@@ -2,6 +2,7 @@ package com.vtr.saas.config;
 
 public class TenantContext {
     private static final ThreadLocal<String> CURRENT_TENANT = new ThreadLocal<>();
+    private static final ThreadLocal<String> CURRENT_SCHEMA = new ThreadLocal<>();
 
     public static String getCurrentTenant(){
         return CURRENT_TENANT.get();
@@ -11,8 +12,17 @@ public class TenantContext {
         CURRENT_TENANT.set(tenant);
     }
 
+    public static String getCurrentSchema(){
+        return CURRENT_SCHEMA.get();
+    }
+
+    public static void setCurrentSchema(final String tenant){
+        CURRENT_SCHEMA.set(tenant);
+    }
+
     public static void clear() {
         CURRENT_TENANT.remove();
+        CURRENT_SCHEMA.remove();
     }
 
 }
