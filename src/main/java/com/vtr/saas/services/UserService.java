@@ -9,7 +9,7 @@ public interface UserService extends UserDetailsService {
 
     void createUser(final UserRequest request);
 
-    void updatedUser(final String id, final UserRequest request);
+    void updateUser(final String id, final UserRequest request);
 
     void deleteUser(final String id);
 
