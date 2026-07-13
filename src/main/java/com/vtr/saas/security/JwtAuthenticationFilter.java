@@ -1,6 +1,7 @@
 package com.vtr.saas.security;
 
 import com.vtr.saas.config.TenantContext;
+import com.vtr.saas.config.TenantSchemaResolver;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
