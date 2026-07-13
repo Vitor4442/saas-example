@@ -31,7 +31,7 @@ public class Tenant extends AbstractEntity {
 
     @Enumerated(STRING)
     @Column(name = "status", nullable = false)
-    private TenantStatus staus = TenantStatus.PENDING;
+    private TenantStatus status = TenantStatus.PENDING;
 
     @Column(name = "admin_full_name", nullable = false)
     private String adminFullname;
